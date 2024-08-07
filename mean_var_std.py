@@ -1,32 +1,44 @@
 import numpy as np
 
 def calculate(list):
+    if len(list) != 9:
+        raise ValueError("List must contain nine numbers.")
 
-    if len(list)!=9:
-        raise ValueError("La lista debe contener nueve números")
-    matrix=np.array(list).reshape(3,3)
-    calculations={
-        "Mean":[np.mean(matrix,axis=0).tolist(),np.mean(matrix,axis=1).tolist(),
-                np.mean(matrix).tolist()],
-        "Variance":[np.var(matrix,axis=0).tolist(),np.var(matrix,axis=1).tolist(),
-                    np.var(matrix).tolist()],
-        "Sum":[np.sum(matrix,axis=0).tolist(),np.sum(matrix,axis=1).tolist(),
-               np.sum(matrix).tolist()],
-        "Standar Deviation":[np.std(matrix,axis=0).tolist(),np.std(matrix,axis=1).tolist(),
-                             np.std(matrix).tolist()],
-        "Máximum":[np.max(matrix,axis=0).tolist(),np.max(matrix,axis=1).tolist(),
-                   np.max(matrix).tolist()],
-        "Minimum":[np.min(matrix,axis=0).tolist(),np.min(matrix,axis=1).tolist(),
-                   np.min(matrix).tolist()]
-        }
+    # Convertir la lista de entrada a un arreglo numpy y remodelarlo
+    arr = np.array(list).reshape(3, 3)
 
-    return calculations
-try:
-
-    print(calculate((1,2,3,4,5,6,7,8,9)))
-  
-except ValueError as error:
-    print("error:",error)
-
+    # Cálculo de las estadísticas
+    calculations = {
+        'mean': [
+            arr.mean(axis=0).tolist(),  # Media por columnas
+            arr.mean(axis=1).tolist(),  # Media por filas
+            arr.mean()                  # Media total
+        ],
+        'variance': [
+            arr.var(axis=0).tolist(),   # Varianza por columnas
+            arr.var(axis=1).tolist(),   # Varianza por filas
+            arr.var()                   # Varianza total
+        ],
+        'standard deviation': [
+            arr.std(axis=0).tolist(),    # Desviación estándar por columnas
+            arr.std(axis=1).tolist(),    # Desviación estándar por filas
+            arr.std()                    # Desviación estándar total
+        ],
+        'max': [
+            arr.max(axis=0).tolist(),    # Máximo por columnas
+            arr.max(axis=1).tolist(),    # Máximo por filas
+            arr.max()                    # Máximo total
+        ],
+        'min': [
+            arr.min(axis=0).tolist(),    # Mínimo por columnas
+            arr.min(axis=1).tolist(),    # Mínimo por filas
+            arr.min()                    # Mínimo total
+        ],
+        'sum': [
+            arr.sum(axis=0).tolist(),     # Suma por columnas
+            arr.sum(axis=1).tolist(),     # Suma por filas
+            arr.sum()                     # Suma total
+        ]
+    }
 
     return calculations
